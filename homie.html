@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Page</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts - Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" xintegrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        /* Custom styles to integrate Poppins font with Tailwind */
+        body {
+            font-family: 'Poppins', sans-serif;
+            /* Removed background-image for simplicity with Tailwind.
+               For a responsive background image, consider using Tailwind's background utilities
+               after configuring image paths in tailwind.config.js, or a simple bg-color. */
+            background-color: #f3f4f6; /* Light gray background */
+        }
+        /* Hide scrollbar for elements if needed, though Tailwind mostly handles this */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none; /* IE and Edge */
+            scrollbar-width: none; /* Firefox */
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+    <!-- Header Section -->
+    <header class="bg-gray-800 shadow-md p-4 flex justify-between items-center relative z-20">
+        <!-- Logo / Right Header -->
+        <div class="flex-shrink-0">
+            <h4 class="text-2xl font-bold whitespace-nowrap">
+                <span class="text-indigo-400">Port</span><span class="text-gray-300">folio</span>
+            </h4>
+        </div>
+
+        <!-- Middle Header - Navigation Links (Hidden on small screens, shown on medium and up) -->
+        <div class="hidden md:flex flex-grow justify-center">
+            <nav class="nav-links">
+                <ul class="flex space-x-6">
+                    <li><a href="index.html" class="text-gray-300 hover:text-white font-medium flex items-center rounded-md px-3 py-2 transition-colors duration-200"><i class="fas fa-home mr-2"></i> Home</a></li>
+                    <li><a href="homie.html" class="text-white hover:text-indigo-400 font-medium flex items-center rounded-md px-3 py-2 transition-colors duration-200 border-b-2 border-white"><i class="fas fa-user mr-2"></i> About</a></li>
+                    <li><a href="interests.html" class="text-gray-300 hover:text-white font-medium flex items-center rounded-md px-3 py-2 transition-colors duration-200"><i class="fas fa-briefcase mr-2"></i> Interest</a></li>
+                    <li><a href="location.html" class="text-gray-300 hover:text-white font-medium flex items-center rounded-md px-3 py-2 transition-colors duration-200"><i class="fas fa-map-marker-alt mr-2"></i> Location</a></li>
+                </ul>
+            </nav>
+        </div>
+
+        <!-- Left Header - Social Links (Hidden on small screens, shown on medium and up) -->
+        <div class="hidden md:flex flex-shrink-0">
+            <div class="social-links">
+                <ul class="flex space-x-4">
+                    <li class="rounded-full bg-blue-600 hover:bg-blue-700 transition-colors duration-200">
+                        <a href="https://www.facebook.com/tizon.km" target="_blank" class="block p-2 text-white">
+                            <i class="fab fa-facebook text-lg"></i>
+                        </a>
+                    </li>
+                    <li class="rounded-full bg-blue-400 hover:bg-blue-500 transition-colors duration-200">
+                        <a href="https://www.instagram.com/ovx1e/?next=%2F" target="_blank" class="block p-2 text-white">
+                            <i class="fab fa-twitter text-lg"></i>
+                        </a>
+                    </li>
+                    <li class="rounded-full bg-pink-500 hover:bg-pink-600 transition-colors duration-200">
+                        <a href="https://www.instagram.com/ovx1e/?next=%2F" target="_blank" class="block p-2 text-white">
+                            <i class="fab fa-instagram text-lg"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Toggle Button (Visible only on small screens) -->
+        <div class="md:hidden flex items-center">
+            <button id="mobile-menu-button" class="text-gray-300 hover:text-white focus:outline-none focus:ring-2 focus:ring-indigo-400 rounded-md p-2">
+                <i class="fas fa-bars text-xl"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile Sidebar Menu (Initially hidden, toggled by JS) -->
+    <div id="mobile-sidebar" class="fixed top-0 right-0 w-64 h-full bg-gray-900 text-white shadow-lg transform translate-x-full md:hidden transition-transform duration-300 ease-in-out z-30">
+        <div class="p-6 flex flex-col h-full">
+            <!-- Close button -->
+            <div class="flex justify-end mb-8">
+                <button id="close-mobile-menu" class="text-gray-300 hover:text-white focus:outline-none">
+                    <i class="fas fa-times text-2xl"></i>
+                </button>
+            </div>
+
+            <!-- Mobile Navigation Links -->
+            <nav class="flex-grow">
+                <ul class="space-y-4">
+                    <li><a href="index.html" class="block text-gray-300 hover:text-white font-medium flex items-center rounded-md px-3 py-2 transition-colors duration-200"><i class="fas fa-home mr-3 text-lg"></i> Home</a></li>
+                    <li><a href="homie.html" class="block text-white hover:text-indigo-400 font-medium flex items-center rounded-md px-3 py-2 transition-colors duration-200 border-l-4 border-indigo-400"><i class="fas fa-user mr-3 text-lg"></i> About</a></li>
+                    <li><a href="interests.html" class="block text-gray-300 hover:text-white font-medium flex items-center rounded-md px-3 py-2 transition-colors duration-200"><i class="fas fa-briefcase mr-3 text-lg"></i> Interest</a></li>
+                    <li><a href="location.html" class="block text-gray-300 hover:text-white font-medium flex items-center rounded-md px-3 py-2 transition-colors duration-200"><i class="fas fa-map-marker-alt mr-3 text-lg"></i> Location</a></li>
+                </ul>
+            </nav>
+
+            <!-- Mobile Social Links -->
+            <div class="mt-8 pt-6 border-t border-gray-700">
+                <h5 class="text-gray-400 text-sm mb-4">Connect With Me:</h5>
+                <ul class="space-y-3">
+                    <li>
+                        <a href="https://www.facebook.com/tizon.km" target="_blank" class="block text-gray-300 hover:text-white font-medium flex items-center rounded-md px-3 py-2 transition-colors duration-200">
+                            <i class="fab fa-facebook mr-3 text-lg text-blue-500"></i> Facebook
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.instagram.com/ovx1e/?next=%2F" target="_blank" class="block text-gray-300 hover:text-white font-medium flex items-center rounded-md px-3 py-2 transition-colors duration-200">
+                            <i class="fab fa-twitter mr-3 text-lg text-blue-300"></i> Twitter
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.instagram.com/ovx1e/?next=%2F" target="_blank" class="block text-gray-300 hover:text-white font-medium flex items-center rounded-md px-3 py-2 transition-colors duration-200">
+                            <i class="fab fa-instagram mr-3 text-lg text-pink-400"></i> Instagram
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content - Page Title -->
+    <h1 class="page-title text-center my-8 text-3xl md:text-4xl lg:text-5xl font-extrabold text-gray-800 px-4">
+        MY HOBBIES AND LIKES
+    </h1>
+
+    <!-- Image Slider Section -->
+    <section class="max-w-7xl mx-auto px-4 relative mb-12">
+        <button id="prevBtn" aria-label="Previous slide" class="absolute top-1/2 -left-4 transform -translate-y-1/2 bg-white bg-opacity-70 hover:bg-opacity-100 rounded-full p-2 shadow z-10 hidden md:block">
+            <svg class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M15 18l-6-6 6-6" stroke-linecap="round" stroke-linejoin="round"></path>
+            </svg>
+        </button>
+        <div id="slider" class="flex space-x-6 overflow-x-auto no-scrollbar scroll-smooth p-2 md:p-0">
+            <!-- Ensure fallbacks or placehold.co for images -->
+            <img class="flex-shrink-0 w-72 h-96 object-cover rounded-lg shadow-md" height="400" src="images/guitar.jpg" alt="Person playing a guitar" onerror="this.onerror=null;this.src='https://placehold.co/300x400/CCCCCC/333333?text=Guitar';"/>
+            <img class="flex-shrink-0 w-72 h-96 object-cover rounded-lg shadow-md" height="400" src="images/pets.jpg" alt="Pets enjoying themselves" onerror="this.onerror=null;this.src='https://placehold.co/300x400/CCCCCC/333333?text=Pets';"/>
+            <img class="flex-shrink-0 w-72 h-96 object-cover rounded-lg shadow-md" height="400" src="images/music.jpg" alt="Headphones and music notes" onerror="this.onerror=null;this.src='https://placehold.co/300x400/CCCCCC/333333?text=Music';"/>
+            <img class="flex-shrink-0 w-72 h-96 object-cover rounded-lg shadow-md" height="400" src="images/pictures.jpg" alt="Camera lens and photos" onerror="this.onerror=null;this.src='https://placehold.co/300x400/CCCCCC/333333?text=Photography';"/>
+            <img class="flex-shrink-0 w-72 h-96 object-cover rounded-lg shadow-md" height="400" src="images/sketch.jpg" alt="Sketchbook and drawing tools" onerror="this.onerror=null;this.src='https://placehold.co/300x400/CCCCCC/333333?text=Sketching';"/>
+            <img class="flex-shrink-0 w-72 h-96 object-cover rounded-lg shadow-md" height="400" src="images/watch.jpg" alt="Wristwatch on a table" onerror="this.onerror=null;this.src='https://placehold.co/300x400/CCCCCC/333333?text=Timepieces';"/>
+            <!-- Duplicated images for continuous effect -->
+            <img class="flex-shrink-0 w-72 h-96 object-cover rounded-lg shadow-md" height="400" src="images/guitar.jpg" alt="Person playing a guitar" onerror="this.onerror=null;this.src='https://placehold.co/300x400/CCCCCC/333333?text=Guitar';"/>
+            <img class="flex-shrink-0 w-72 h-96 object-cover rounded-lg shadow-md" height="400" src="images/pets.jpg" alt="Pets enjoying themselves" onerror="this.onerror=null;this.src='https://placehold.co/300x400/CCCCCC/333333?text=Pets';"/>
+            <img class="flex-shrink-0 w-72 h-96 object-cover rounded-lg shadow-md" height="400" src="images/music.jpg" alt="Headphones and music notes" onerror="this.onerror=null;this.src='https://placehold.co/300x400/CCCCCC/333333?text=Music';"/>
+            <img class="flex-shrink-0 w-72 h-96 object-cover rounded-lg shadow-md" height="400" src="images/pictures.jpg" alt="Camera lens and photos" onerror="this.onerror=null;this.src='https://placehold.co/300x400/CCCCCC/333333?text=Photography';"/>
+            <img class="flex-shrink-0 w-72 h-96 object-cover rounded-lg shadow-md" height="400" src="images/sketch.jpg" alt="Sketchbook and drawing tools" onerror="this.onerror=null;this.src='https://placehold.co/300x400/CCCCCC/333333?text=Sketching';"/>
+            <img class="flex-shrink-0 w-72 h-96 object-cover rounded-lg shadow-md" height="400" src="images/watch.jpg" alt="Wristwatch on a table" onerror="this.onerror=null;this.src='https://placehold.co/300x400/CCCCCC/333333?text=Timepieces';"/>
+        </div>
+        <button id="nextBtn" aria-label="Next slide" class="absolute top-1/2 -right-4 transform -translate-y-1/2 bg-white bg-opacity-70 hover:bg-opacity-100 rounded-full p-2 shadow z-10 hidden md:block">
+            <svg class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M9 18l6-6-6-6" stroke-linecap="round" stroke-linejoin="round"></path>
+            </svg>
+        </button>
+    </section>
+
+    <!-- About Content Section -->
+    <main class="max-w-4xl mx-auto px-6 py-12 bg-white rounded-lg shadow-md mb-8">
+        <h2 class="text-2xl font-semibold text-indigo-700 mb-4">
+            Welcome! My name is Kayla Tizon, and I am an IT Student currently pursuing my studies at CvSU - Bacoor Cavite Campus. Residing in Las Pinas City, age 20 y/o.
+        </h2>
+        <p class="text-gray-700 text-base leading-relaxed">
+            Beyond my studies, I find enjoyment and balance in several key hobbies. Music is a significant passion, whether I'm playing the guitar or simply immersing myself in listening with headphones. The companionship of my pets, including cats and dogs, brings immense joy and comfort to my life. I also have a keen interest in photography, which allows me to capture moments and perspectives of the world around me. These activities provide a valuable creative outlet and help me relax and recharge.
+        </p>
+    </main>
+
+    <!-- JavaScript for Mobile Menu Toggle and Slider -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Mobile Menu Functionality
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const closeMobileMenu = document.getElementById('close-mobile-menu');
+            const mobileSidebar = document.getElementById('mobile-sidebar');
+
+            mobileMenuButton.addEventListener('click', () => {
+                mobileSidebar.classList.remove('translate-x-full');
+                mobileSidebar.classList.add('translate-x-0');
+            });
+
+            closeMobileMenu.addEventListener('click', () => {
+                mobileSidebar.classList.remove('translate-x-0');
+                mobileSidebar.classList.add('translate-x-full');
+            });
+
+            // Close sidebar when clicking outside (optional, but good UX)
+            document.addEventListener('click', (event) => {
+                if (!mobileSidebar.contains(event.target) && !mobileMenuButton.contains(event.target) && mobileSidebar.classList.contains('translate-x-0')) {
+                    mobileSidebar.classList.remove('translate-x-0');
+                    mobileSidebar.classList.add('translate-x-full');
+                }
+            });
+
+            // Slider Functionality
+            const slider = document.getElementById('slider');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            
+            // Calculate slide width dynamically including gap (Tailwind's space-x-6 means a 1.5rem or 24px gap)
+            // Use the first image's offsetWidth and a fixed gap value
+            const firstSlide = slider.querySelector('img');
+            const slideWidth = firstSlide.offsetWidth + 24; // 24px for space-x-6
+
+            prevBtn.addEventListener('click', () => {
+                slider.scrollBy({ left: -slideWidth, behavior: 'smooth' });
+            });
+
+            nextBtn.addEventListener('click', () => {
+                slider.scrollBy({ left: slideWidth, behavior: 'smooth' });
+            });
+
+            // Optional: Smooth scroll for internal links (if any, though not explicit in this page's content)
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    // Only prevent default if the target is on the current page
+                    try {
+                        const targetElement = document.querySelector(this.getAttribute('href'));
+                        if (targetElement) {
+                            e.preventDefault();
+                            targetElement.scrollIntoView({ behavior: 'smooth' });
+                            // If sidebar is open and link is an internal anchor, close it
+                            if (mobileSidebar.classList.contains('translate-x-0')) {
+                                mobileSidebar.classList.remove('translate-x-0');
+                                mobileSidebar.classList.add('translate-x-full');
+                            }
+                        }
+                    } catch (error) {
+                        // Handle cases where the href might not be a valid selector
+                        console.warn('Invalid href for smooth scroll:', this.getAttribute('href'), error);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

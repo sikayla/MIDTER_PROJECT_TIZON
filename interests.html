@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interests Page</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts - Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" xintegrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        /* Custom styles to integrate Poppins font with Tailwind */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f3f4f6; /* Light gray background */
+        }
+        /* Hide scrollbar for elements if needed, though Tailwind mostly handles this */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none; /* IE and Edge */
+            scrollbar-width: none; /* Firefox */
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+    <!-- Header Section -->
+    <header class="bg-gray-800 shadow-md p-4 flex justify-between items-center relative z-20">
+        <!-- Logo / Right Header -->
+        <div class="flex-shrink-0">
+            <h4 class="text-2xl font-bold whitespace-nowrap">
+                <span class="text-indigo-400">Port</span><span class="text-gray-300">folio</span>
+            </h4>
+        </div>
+
+        <!-- Middle Header - Navigation Links (Hidden on small screens, shown on medium and up) -->
+        <div class="hidden md:flex flex-grow justify-center">
+            <nav class="nav-links">
+                <ul class="flex space-x-6">
+                    <li><a href="index.html" class="text-gray-300 hover:text-white font-medium flex items-center rounded-md px-3 py-2 transition-colors duration-200"><i class="fas fa-home mr-2"></i> Home</a></li>
+                    <li><a href="homie.html" class="text-gray-300 hover:text-white font-medium flex items-center rounded-md px-3 py-2 transition-colors duration-200"><i class="fas fa-user mr-2"></i> About</a></li>
+                    <li><a href="interests.html" class="text-white hover:text-indigo-400 font-medium flex items-center rounded-md px-3 py-2 transition-colors duration-200 border-b-2 border-white"><i class="fas fa-briefcase mr-2"></i> Interest</a></li>
+                    <li><a href="location.html" class="text-gray-300 hover:text-white font-medium flex items-center rounded-md px-3 py-2 transition-colors duration-200"><i class="fas fa-map-marker-alt mr-2"></i> Location</a></li>
+                </ul>
+            </nav>
+        </div>
+
+        <!-- Left Header - Social Links (Hidden on small screens, shown on medium and up) -->
+        <div class="hidden md:flex flex-shrink-0">
+            <div class="social-links">
+                <ul class="flex space-x-4">
+                    <li class="rounded-full bg-blue-600 hover:bg-blue-700 transition-colors duration-200">
+                        <a href="https://www.facebook.com/tizon.km" target="_blank" class="block p-2 text-white">
+                            <i class="fab fa-facebook text-lg"></i>
+                        </a>
+                    </li>
+                    <li class="rounded-full bg-blue-400 hover:bg-blue-500 transition-colors duration-200">
+                        <a href="https://www.instagram.com/ovx1e/?next=%2F" target="_blank" class="block p-2 text-white">
+                            <i class="fab fa-twitter text-lg"></i>
+                        </a>
+                    </li>
+                    <li class="rounded-full bg-pink-500 hover:bg-pink-600 transition-colors duration-200">
+                        <a href="https://www.instagram.com/ovx1e/?next=%2F" target="_blank" class="block p-2 text-white">
+                            <i class="fab fa-instagram text-lg"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Toggle Button (Visible only on small screens) -->
+        <div class="md:hidden flex items-center">
+            <button id="mobile-menu-button" class="text-gray-300 hover:text-white focus:outline-none focus:ring-2 focus:ring-indigo-400 rounded-md p-2">
+                <i class="fas fa-bars text-xl"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile Sidebar Menu (Initially hidden, toggled by JS) -->
+    <div id="mobile-sidebar" class="fixed top-0 right-0 w-64 h-full bg-gray-900 text-white shadow-lg transform translate-x-full md:hidden transition-transform duration-300 ease-in-out z-30">
+        <div class="p-6 flex flex-col h-full">
+            <!-- Close button -->
+            <div class="flex justify-end mb-8">
+                <button id="close-mobile-menu" class="text-gray-300 hover:text-white focus:outline-none">
+                    <i class="fas fa-times text-2xl"></i>
+                </button>
+            </div>
+
+            <!-- Mobile Navigation Links -->
+            <nav class="flex-grow">
+                <ul class="space-y-4">
+                    <li><a href="index.html" class="block text-gray-300 hover:text-white font-medium flex items-center rounded-md px-3 py-2 transition-colors duration-200"><i class="fas fa-home mr-3 text-lg"></i> Home</a></li>
+                    <li><a href="homie.html" class="block text-gray-300 hover:text-white font-medium flex items-center rounded-md px-3 py-2 transition-colors duration-200"><i class="fas fa-user mr-3 text-lg"></i> About</a></li>
+                    <li><a href="interests.html" class="block text-white hover:text-indigo-400 font-medium flex items-center rounded-md px-3 py-2 transition-colors duration-200 border-l-4 border-indigo-400"><i class="fas fa-briefcase mr-3 text-lg"></i> Interest</a></li>
+                    <li><a href="location.html" class="block text-gray-300 hover:text-white font-medium flex items-center rounded-md px-3 py-2 transition-colors duration-200"><i class="fas fa-map-marker-alt mr-3 text-lg"></i> Location</a></li>
+                </ul>
+            </nav>
+
+            <!-- Mobile Social Links -->
+            <div class="mt-8 pt-6 border-t border-gray-700">
+                <h5 class="text-gray-400 text-sm mb-4">Connect With Me:</h5>
+                <ul class="space-y-3">
+                    <li>
+                        <a href="https://www.facebook.com/tizon.km" target="_blank" class="block text-gray-300 hover:text-white font-medium flex items-center rounded-md px-3 py-2 transition-colors duration-200">
+                            <i class="fab fa-facebook mr-3 text-lg text-blue-500"></i> Facebook
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.instagram.com/ovx1e/?next=%2F" target="_blank" class="block text-gray-300 hover:text-white font-medium flex items-center rounded-md px-3 py-2 transition-colors duration-200">
+                            <i class="fab fa-twitter mr-3 text-lg text-blue-300"></i> Twitter
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.instagram.com/ovx1e/?next=%2F" target="_blank" class="block text-gray-300 hover:text-white font-medium flex items-center rounded-md px-3 py-2 transition-colors duration-200">
+                            <i class="fab fa-instagram mr-3 text-lg text-pink-400"></i> Instagram
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Interests Section -->
+    <section class="interests-section w-full max-w-5xl mx-auto px-4 py-8 text-center mt-4">
+        <h2 class="text-3xl md:text-4xl font-extrabold mb-8 text-gray-800 uppercase tracking-wide">
+            I'M INTERESTED IN:
+        </h2>
+
+        <div class="slider-container relative overflow-hidden px-10 md:px-12">
+            <div id="interests-slider" class="flex space-x-6 overflow-x-auto no-scrollbar scroll-smooth">
+                <!-- Ensure fallbacks or placehold.co for images -->
+                <img class="flex-shrink-0 w-64 h-80 md:w-72 md:h-96 object-cover rounded-lg shadow-md" height="400" src="images/coding.jpg" alt="Person coding on a laptop" onerror="this.onerror=null;this.src='https://placehold.co/300x400/CCCCCC/333333?text=Coding';"/>
+                <img class="flex-shrink-0 w-64 h-80 md:w-72 md:h-96 object-cover rounded-lg shadow-md" height="400" src="images/develop.jpg" alt="Web development interface" onerror="this.onerror=null;this.src='https://placehold.co/300x400/CCCCCC/333333?text=Development';"/>
+                <img class="flex-shrink-0 w-64 h-80 md:w-72 md:h-96 object-cover rounded-lg shadow-md" height="400" src="images/fixing.jpg" alt="Person fixing computer hardware" onerror="this.onerror=null;this.src='https://placehold.co/300x400/CCCCCC/333333?text=Troubleshooting';"/>
+                <img class="flex-shrink-0 w-64 h-80 md:w-72 md:h-96 object-cover rounded-lg shadow-md" height="400" src="images/cyber.jpg" alt="Cybersecurity concepts" onerror="this.onerror=null;this.src='https://placehold.co/300x400/CCCCCC/333333?text=Cybersecurity';"/>
+                <img class="flex-shrink-0 w-64 h-80 md:w-72 md:h-96 object-cover rounded-lg shadow-md" height="400" src="images/languages.jpg" alt="Various programming languages" onerror="this.onerror=null;this.src='https://placehold.co/300x400/CCCCCC/333333?text=Languages';"/>
+                <img class="flex-shrink-0 w-64 h-80 md:w-72 md:h-96 object-cover rounded-lg shadow-md" height="400" src="images/app.jpg" alt="Mobile app development" onerror="this.onerror=null;this.src='https://placehold.co/300x400/CCCCCC/333333?text=App+Development';"/>
+                <!-- Duplicated images for continuous loop effect -->
+                <img class="flex-shrink-0 w-64 h-80 md:w-72 md:h-96 object-cover rounded-lg shadow-md" height="400" src="images/coding.jpg" alt="Person coding on a laptop" onerror="this.onerror=null;this.src='https://placehold.co/300x400/CCCCCC/333333?text=Coding';"/>
+                <img class="flex-shrink-0 w-64 h-80 md:w-72 md:h-96 object-cover rounded-lg shadow-md" height="400" src="images/develop.jpg" alt="Web development interface" onerror="this.onerror=null;this.src='https://placehold.co/300x400/CCCCCC/333333?text=Development';"/>
+                <img class="flex-shrink-0 w-64 h-80 md:w-72 md:h-96 object-cover rounded-lg shadow-md" height="400" src="images/fixing.jpg" alt="Person fixing computer hardware" onerror="this.onerror=null;this.src='https://placehold.co/300x400/CCCCCC/333333?text=Troubleshooting';"/>
+                <img class="flex-shrink-0 w-64 h-80 md:w-72 md:h-96 object-cover rounded-lg shadow-md" height="400" src="images/cyber.jpg" alt="Cybersecurity concepts" onerror="this.onerror=null;this.src='https://placehold.co/300x400/CCCCCC/333333?text=Cybersecurity';"/>
+            </div>
+
+            <button id="prevBtn" class="absolute top-1/2 -left-2 md:-left-4 transform -translate-y-1/2 bg-white bg-opacity-70 hover:bg-opacity-100 rounded-full p-2 shadow z-10">
+                <i class="fas fa-chevron-left text-gray-700 text-xl"></i>
+            </button>
+            <button id="nextBtn" class="absolute top-1/2 -right-2 md:-right-4 transform -translate-y-1/2 bg-white bg-opacity-70 hover:bg-opacity-100 rounded-full p-2 shadow z-10">
+                <i class="fas fa-chevron-right text-gray-700 text-xl"></i>
+            </button>
+        </div>
+
+        <main class="max-w-4xl mx-auto px-6 py-12 bg-white rounded-lg shadow-md my-8">
+            <h2 class="text-2xl font-semibold text-indigo-700 mb-4">
+                Welcome!
+            </h2>
+            <p class="text-gray-700 text-base leading-relaxed">
+                My name is Kayla Tizon, and I am an IT Student currently pursuing my studies at CvSU - Bacoor Cavite Campus. Residing in Las Pinas City, I am deeply interested in exploring the vast landscape of the Information Technology industry and am particularly driven by the aspiration to develop innovative systems in the future. I am eager to learn and gain practical experience to achieve this goal.
+            </p>
+        </main>
+    </section>
+
+    <!-- JavaScript for Mobile Menu Toggle and Slider -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Mobile Menu Functionality
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const closeMobileMenu = document.getElementById('close-mobile-menu');
+            const mobileSidebar = document.getElementById('mobile-sidebar');
+
+            mobileMenuButton.addEventListener('click', () => {
+                mobileSidebar.classList.remove('translate-x-full');
+                mobileSidebar.classList.add('translate-x-0');
+            });
+
+            closeMobileMenu.addEventListener('click', () => {
+                mobileSidebar.classList.remove('translate-x-0');
+                mobileSidebar.classList.add('translate-x-full');
+            });
+
+            // Close sidebar when clicking outside (optional, but good UX)
+            document.addEventListener('click', (event) => {
+                if (!mobileSidebar.contains(event.target) && !mobileMenuButton.contains(event.target) && mobileSidebar.classList.contains('translate-x-0')) {
+                    mobileSidebar.classList.remove('translate-x-0');
+                    mobileSidebar.classList.add('translate-x-full');
+                }
+            });
+
+            // Slider Functionality
+            const slider = document.getElementById('interests-slider');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            
+            // Function to calculate the width of one slide including its margin
+            function getSlideWidth() {
+                const firstSlide = slider.querySelector('img');
+                if (!firstSlide) {
+                    console.log("getSlideWidth: No images found in slider!");
+                    return 0;
+                }
+                const slideStyles = getComputedStyle(firstSlide);
+                // Tailwind's space-x-6 translates to margin-right: 1.5rem (24px) for children
+                const tailwindGapPx = 24; 
+                const width = firstSlide.offsetWidth + tailwindGapPx;
+                return width;
+            }
+
+            // Manual navigation
+            prevBtn.addEventListener('click', () => {
+                stopAutoSlide(); // Stop auto-slide on manual click
+                slider.scrollBy({ left: -getSlideWidth(), behavior: 'smooth' });
+                startAutoSlideAfterDelay(); // Optionally restart after a delay
+            });
+        
+            nextBtn.addEventListener('click', () => {
+                stopAutoSlide(); // Stop auto-slide on manual click
+                slider.scrollBy({ left: getSlideWidth(), behavior: 'smooth' });
+                startAutoSlideAfterDelay(); // Optionally restart after a delay
+            });
+        
+            // Auto-slide functionality
+            let autoSlideInterval;
+            const slideIntervalTime = 3000; // Time in milliseconds (e.g., 3000ms = 3 seconds)
+            const userInteractionDelay = 5000; // Delay after user interaction before restarting auto-slide
+        
+            function startAutoSlide() {
+                // Only start if an interval isn't already running
+                if (!autoSlideInterval) {
+                    autoSlideInterval = setInterval(() => {
+                        const currentScrollLeft = slider.scrollLeft;
+                        const maxScrollLeft = slider.scrollWidth - slider.clientWidth;
+                        const slideWidth = getSlideWidth();
+        
+                        // Check if the slider is actually scrollable
+                        if (slider.scrollWidth <= slider.clientWidth) {
+                            stopAutoSlide();
+                            // Optionally hide buttons if not scrollable
+                            prevBtn.style.display = 'none';
+                            nextBtn.style.display = 'none';
+                            return; // Exit the interval function
+                        }
+        
+                        // Check if we are at the end of the slider (allowing for tiny floating point inaccuracies)
+                        if (Math.abs(currentScrollLeft - maxScrollLeft) < 1) { 
+                            // If at the end, jump back to the start instantly
+                            slider.scrollTo({ left: 0, behavior: 'auto' });
+                            // Then smooth scroll to the next image to make it look like a continuous loop
+                            setTimeout(() => {
+                                slider.scrollBy({ left: slideWidth, behavior: 'smooth' });
+                            }, 50); // Small delay to allow jump to register
+                        } else {
+                            // If not at the end, scroll to the next slide
+                            slider.scrollBy({ left: slideWidth, behavior: 'smooth' });
+                        }
+                    }, slideIntervalTime);
+                }
+            }
+        
+            function stopAutoSlide() {
+                if (autoSlideInterval) {
+                    clearInterval(autoSlideInterval);
+                    autoSlideInterval = null; // Reset the interval ID
+                }
+            }
+        
+            // Function to start auto-slide after a delay (useful after user interaction)
+            let autoSlideTimeout;
+            function startAutoSlideAfterDelay() {
+                stopAutoSlide(); // Stop any existing auto-slide
+                clearTimeout(autoSlideTimeout); // Clear any pending delayed start
+                autoSlideTimeout = setTimeout(startAutoSlide, userInteractionDelay);
+            }
+        
+            // Start auto-sliding when the page loads, ensuring images have time to load
+            window.addEventListener('load', () => {
+                // Check if the slider is actually scrollable
+                if (slider.scrollWidth > slider.clientWidth) {
+                    startAutoSlide();
+                } else {
+                    // Optionally hide buttons if not scrollable
+                    prevBtn.style.display = 'none';
+                    nextBtn.style.display = 'none';
+                }
+            });
+        
+            // Optional: Stop auto-sliding when the user interacts with the slider
+            slider.addEventListener('mouseover', stopAutoSlide);
+            slider.addEventListener('mouseout', startAutoSlideAfterDelay); // Restart after mouse leaves
+        
+            // Stop auto-slide if the window loses focus
+            window.addEventListener('blur', stopAutoSlide);
+            // Resume auto-slide when the window regains focus (after a delay)
+            window.addEventListener('focus', startAutoSlideAfterDelay);
+        });
+    </script>
+</body>
+</html>
